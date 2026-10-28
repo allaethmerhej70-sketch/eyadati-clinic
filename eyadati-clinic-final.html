@@ -1,85 +1,330 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#252c29">
-<title>عيادتي | الحسابات والمخزون</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinic Mint | إدارة العيادة</title>
 <style>
- :root{--green:#252c29;--green2:#37443e;--mint:#c9f5e4;--bg:#f1f4f2;--card:#fff;--text:#202824;--muted:#68736d;--line:#d8e0db;--red:#b42318;--amber:#9a6700;--blue:#2457a7;--shadow:0 5px 18px #2028240d}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.5}header{background:linear-gradient(120deg,#202623,#37443e);color:white;padding:24px 20px 20px}header .wrap,main{max-width:1240px;margin:auto}h1{font-size:24px;margin:0 0 4px}header p{margin:0;color:#d2e9df;font-size:13px}.headrow{display:flex;align-items:center;justify-content:space-between;gap:12px}.lockbtn{border:1px solid #82958b;background:#37443e;color:#fff;border-radius:9px;padding:8px 11px;font-weight:700;white-space:nowrap}.auth-overlay{position:fixed;inset:0;z-index:9999;background:linear-gradient(145deg,#202623,#37443e);display:flex;align-items:center;justify-content:center;padding:18px}.auth-card{background:#fff;width:min(100%,420px);border-radius:22px;padding:28px;box-shadow:0 20px 70px #0004}.auth-card h2{margin:0 0 6px;color:#252c29}.auth-card p{font-size:13px;color:#68736d;margin:0 0 16px}.auth-card .field{margin:12px 0}.auth-error{color:#b42318;font-size:13px;min-height:20px;margin-top:8px}.auth-note{font-size:11px!important;margin-top:14px!important}.nav{display:flex;gap:10px;overflow:auto;padding:14px 12px 6px;max-width:1240px;margin:auto;scrollbar-width:thin}.nav button{white-space:nowrap;border:1px solid var(--line);background:white;color:var(--green);border-radius:12px;padding:13px 17px;font-weight:700;min-height:48px}.nav button.active{background:var(--green);color:white;border-color:var(--green)}main{padding:12px}.view{display:none}.view.active{display:block}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:18px;margin-bottom:15px;box-shadow:var(--shadow)}.metric small{color:var(--muted);display:block}.metric strong{font-size:23px;display:block;margin-top:5px;color:#16834a;overflow-wrap:anywhere}.section-title{font-size:18px;margin:8px 0 12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}label{font-size:13px;color:#43534b;font-weight:700}input,select,textarea{width:100%;padding:14px 13px;border:1px solid #cdd9d1;border-radius:12px;background:#fff;font:inherit;min-width:0;min-height:48px}input:focus,select:focus,textarea:focus{outline:3px solid #d5f7e9;border-color:#70b99a}button{font:inherit;cursor:pointer}.primary,.secondary,.danger{border:0;border-radius:12px;padding:13px 17px;font-weight:700;min-height:48px}.primary{background:var(--green);color:#d9ffef}.secondary{background:var(--mint);color:#26332d}.danger{background:#fee4e2;color:var(--red)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.hint{font-size:12px;color:var(--muted);margin:8px 0}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;min-width:650px;font-size:14px}th,td{text-align:right;padding:13px 12px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#e5f5ed;color:#293a32;position:sticky;top:0}tbody tr:nth-child(even){background:#fbfcfb}tfoot td{background:#d9f5e8;font-weight:800;color:#26332d;border-top:2px solid #9dd9bd}.inventory-search{max-width:560px;margin:0 0 16px}.select-search{position:relative;margin-bottom:8px;z-index:5}.select-search input{background:#f9fcfa}.select-search .material-results{display:none;position:absolute;top:calc(100% + 4px);right:0;left:0;max-height:260px;overflow:auto;background:#fff;border:1px solid #a9cbbb;border-radius:12px;box-shadow:0 10px 24px #20282426;z-index:50}.select-search.open .material-results{display:block}.material-result{display:block;width:100%;text-align:right;border:0;border-bottom:1px solid #edf1ee;border-radius:0;background:#fff;padding:13px 14px;min-height:48px;color:var(--text)}.material-result:last-child{border-bottom:0}.material-result:active,.material-result:hover{background:#e4f7ee}.material-result small{display:block;color:var(--muted);font-size:12px}.material-no-results{padding:14px;color:var(--muted);font-size:13px}.picker-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}.stock-value{font-weight:800;color:#16834a}.material-name{font-weight:700}.summary-strip{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;background:#e4f7ee;border-radius:12px;padding:13px 15px;margin-top:12px}.summary-strip strong{color:#16834a;font-size:17px}td .mini{padding:5px 7px;border:0;border-radius:7px;background:#fee4e2;color:var(--red)}.pill{display:inline-block;padding:3px 8px;border-radius:20px;background:#fff1cc;color:var(--amber);font-size:12px}.empty{padding:18px;text-align:center;color:var(--muted)}.notice{background:#fff7df;border:1px solid #f1dfa5;padding:11px;border-radius:10px;font-size:13px;margin-bottom:12px}.positive{color:#16834a!important;font-weight:700}.negative{color:#c62828!important;font-weight:700}.money-in{color:#16834a;font-weight:800}.money-out{color:#c62828;font-weight:800}footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}.hide{display:none!important}@media(min-width:700px){.cards{grid-template-columns:repeat(4,minmax(0,1fr))}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}header{padding:28px 24px}.nav{padding-top:16px}main{padding:22px}.section-title{font-size:21px}.metric strong{font-size:27px}}@media(min-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.panel{padding:22px}}
-</style></head>
-<body>
-<div id="authOverlay" class="auth-overlay"><form id="authForm" class="auth-card"><div style="font-size:34px;margin-bottom:8px">🔐</div><h2 id="authTitle">حماية برنامج عيادتي</h2><p id="authDesc">أنشئ كلمة سر خاصة بك لفتح البرنامج.</p><div class="field"><label for="authPassword">كلمة السر</label><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="6 أحرف أو أرقام على الأقل"></div><div id="confirmWrap" class="field"><label for="authConfirm">تأكيد كلمة السر</label><input id="authConfirm" type="password" autocomplete="new-password" minlength="6" required placeholder="أعد كتابة كلمة السر"></div><button id="authSubmit" class="primary" type="submit" style="width:100%">إنشاء كلمة السر</button><div id="authError" class="auth-error" role="alert"></div><p class="auth-note">تنبيه: هذه قفلة للاستخدام العادي على هذا الجهاز وليست حماية مصرفية؛ لا تخزّن أسماء المرضى أو معلوماتهم الصحية في هذه النسخة.</p></form></div><header><div class="wrap headrow"><div><h1>🏥 عيادتي</h1><p>نظام الحسابات والمخزون الطبي — نسخة أولية</p></div><button id="lockNow" class="lockbtn" type="button">🔒 قفل البرنامج</button></div></header>
-<nav class="nav" aria-label="القائمة">
-<button class="active" data-view="home">الرئيسية</button><button data-view="services">الخدمات والإيرادات</button><button data-view="homeServices">الخدمة المنزلية</button><button data-view="sales">بيع مادة</button><button data-view="materials">المواد الطبية</button><button data-view="purchases">المشتريات</button><button data-view="waste">التالف والجرد</button><button data-view="expenses">المصاريف</button><button data-view="reports">التقارير والنسخ الاحتياطي</button>
-</nav>
-<main>
-<section id="home" class="view active">
-<div class="notice">تنبيه: هذه نسخة أولية تحفظ البيانات على هذا المتصفح والجهاز فقط. لا تسجّل أسماء المرضى أو معلوماتهم الصحية هنا. استخدم «تصدير نسخة احتياطية» بانتظام.</div>
-<div class="cards"><div class="card metric"><small>إيرادات الخدمات</small><strong id="mIncome">0 د.ع</strong></div><div class="card metric"><small>المصاريف المسجلة</small><strong id="mExpenses">0 د.ع</strong></div><div class="card metric"><small>تكلفة المواد المستخدمة</small><strong id="mUsed">0 د.ع</strong></div><div class="card metric"><small>صافي تقديري</small><strong id="mNet">0 د.ع</strong></div></div>
-<div class="panel"><h2 class="section-title">اختصارات سريعة</h2><div class="actions"><button class="primary" data-go="services">＋ تسجيل خدمة</button><button class="secondary" data-go="homeServices">＋ تسجيل خدمة منزلية</button><button class="secondary" data-go="materials">＋ إضافة مادة</button><button class="secondary" data-go="purchases">＋ تسجيل شراء</button><button class="secondary" data-go="expenses">＋ تسجيل مصروف</button></div></div>
-<div class="panel"><h2 class="section-title">مواد منخفضة المخزون</h2><div id="lowStock" class="empty">لا توجد مواد مسجلة بعد.</div></div>
-<div class="panel"><h2 class="section-title">آخر الحركات</h2><div id="recent" class="empty">ستظهر الحركات هنا بعد التسجيل.</div></div>
-</section>
-<section id="sales" class="view"><div class="panel"><h2 class="section-title">تسجيل بيع مادة</h2><form id="saleForm" class="grid"><div class="field"><label>المادة المراد بيعها</label><select name="material" class="materialSelect" required></select></div><div class="field"><label>الكمية المباعة</label><input name="qty" type="number" min="0.001" step="0.001" required></div><div class="field"><label>سعر بيع الوحدة قبل الخصم (د.ع)</label><input name="price" type="number" min="0" step="0.01" required></div><div class="field"><label>الخصم</label><select name="discountPercent"><option value="0">بدون خصم</option><option value="15">خصم 15%</option><option value="20">خصم 20%</option></select></div><div class="field"><label>التاريخ</label><input name="date" type="date" required></div><div class="field"><label>ملاحظة (اختياري)</label><input name="note" placeholder="ملاحظة عن عملية البيع"></div><div class="field full"><button class="primary" type="submit">تأكيد البيع وخصم الكمية فوراً</button></div></form><p class="hint">قبل الحفظ يتحقق البرنامج من توفر الكمية. بعد تأكيد البيع تُخصم الكمية تلقائياً، ويُسجّل اسم المادة والكمية وسعر الوحدة وإجمالي المبلغ المستلم. لن تظهر تكلفة المادة في سجل المبيعات.</p></div><div class="panel"><h2 class="section-title">سجل مبيعات المواد</h2><div id="salesTable" class="empty">لا توجد مبيعات بعد.</div></div></section>
-<section id="materials" class="view"><div class="panel"><h2 class="section-title">إضافة مادة طبية</h2><form id="materialForm" class="grid"><div class="field"><label>رمز المادة (فريد)</label><input name="code" placeholder="مثال: MAT-001" required></div><div class="field"><label>اسم المادة</label><input name="name" placeholder="مثال: قفازات طبية" required></div><div class="field"><label>وحدة القياس</label><select name="unit"><option>قطعة</option><option>علبة</option><option>كيس</option><option>قارورة</option><option>مل</option><option>زوج</option><option>لفة</option><option>أخرى</option></select></div><div class="field"><label>الكمية الافتتاحية</label><input name="qty" type="number" min="0" step="0.001" value="0" required></div><div class="field"><label>تكلفة الوحدة (د.ع)</label><input name="cost" type="number" min="0" step="0.01" value="0" required></div><div class="field"><label>حد التنبيه عنده</label><input name="min" type="number" min="0" step="0.001" value="2" required></div><div class="field full"><button class="primary" type="submit">حفظ المادة</button></div></form><p class="hint">الرمز لا يتكرر. إذا تغير سعر الشراء لاحقاً، سجّل عملية شراء جديدة لتحديث متوسط التكلفة.</p></div><div class="panel"><h2 class="section-title">قائمة المواد والمخزون</h2><div class="field inventory-search"><label for="materialSearch">ابحث عن مادة بالاسم أو الرمز</label><input id="materialSearch" type="search" placeholder="مثال: قفازات أو MAT-001" autocomplete="off"></div><div id="materialsTable" class="empty">لا توجد مواد بعد.</div></div></section>
-<section id="purchases" class="view"><div class="panel"><h2 class="section-title">تسجيل شراء مواد</h2><form id="purchaseForm" class="grid"><div class="field"><label>المادة</label><select name="material" class="materialSelect" required></select></div><div class="field"><label>الكمية المشتراة</label><input name="qty" type="number" min="0.001" step="0.001" required></div><div class="field"><label>سعر شراء الوحدة (د.ع)</label><input name="cost" type="number" min="0" step="0.01" required></div><div class="field"><label>تاريخ الشراء</label><input name="date" type="date" required></div><div class="field"><label>المورّد (اختياري)</label><input name="supplier" placeholder="اسم المورد"></div><div class="field"><label>ملاحظة (اختياري)</label><input name="note" placeholder="رقم فاتورة أو ملاحظة"></div><div class="field full"><button class="primary" type="submit">تسجيل الشراء وتحديث المخزون</button></div></form></div><div class="panel"><h2 class="section-title">سجل المشتريات</h2><div id="purchasesTable" class="empty">لا توجد مشتريات بعد.</div></div></section>
-<section id="services" class="view"><div class="panel"><h2 class="section-title">تسجيل خدمة وإيراد</h2><form id="serviceForm" class="grid"><div class="field"><label>نوع الخدمة</label><input name="name" placeholder="مثال: تركيب كانيولا" required></div><div class="field"><label>سعر الخدمة قبل الخصم (د.ع)</label><input name="income" type="number" min="0" step="0.01" required></div><div class="field"><label>الخصم</label><select name="discountPercent"><option value="0">بدون خصم</option><option value="15">خصم 15%</option><option value="20">خصم 20%</option></select></div><div class="field"><label>التاريخ</label><input name="date" type="date" required></div><div class="field full"><label>المواد المستخدمة</label><div id="serviceLines"></div><div class="actions"><button class="secondary" type="button" id="addLine">＋ إضافة مادة مستخدمة</button></div></div><div class="field full"><label>ملاحظة عامة (اختياري — دون بيانات مرضى)</label><input name="note" placeholder="ملاحظة عن الخدمة"></div><div class="field full"><button class="primary" type="submit">حفظ الخدمة وخصم المواد</button></div></form><p class="hint">لن يتم حفظ الخدمة إذا كانت كمية أي مادة غير كافية. تكلفة المواد تحسب تلقائياً من تكلفة الوحدة المسجلة.</p></div><div class="panel"><h2 class="section-title">سجل الخدمات</h2><div id="servicesTable" class="empty">لا توجد خدمات بعد.</div></div></section>
-<section id="homeServices" class="view">
-<div class="panel">
-<h2 class="section-title">تسجيل خدمة منزلية — حساب مستقل</h2>
-<div class="notice">هذا القسم مستقل تماماً عن إيرادات العيادة العامة والمخزون والجرد. تسجيل الخدمة هنا لا يخصم مواد ولا يضيف المبلغ إلى إجمالي الوارد العام. بعد الخدمة، سجّل المواد التي استُخدمت عبر قسم «بيع مادة» بالطريقة المعتادة حتى تُخصم من المخزون.</div>
-<form id="homeServiceForm" class="grid">
-<div class="field"><label>نوع الخدمة المنزلية</label><input name="name" placeholder="مثال: زيارة تمريضية منزلية" required></div>
-<div class="field"><label>أجرة الخدمة قبل الخصم (د.ع)</label><input name="income" type="number" min="0.01" step="0.01" required></div><div class="field"><label>الخصم</label><select name="discountPercent"><option value="0">بدون خصم</option><option value="15">خصم 15%</option><option value="20">خصم 20%</option></select></div>
-<div class="field"><label>التاريخ</label><input name="date" type="date" required></div>
-<div class="field full"><label>المواد المستخدمة (للتذكير فقط — لن تخصم من المخزون)</label><textarea name="materialsUsed" rows="2" placeholder="مثال: أمبولة D3 × 1، قفازات × 1، شاش × 2"></textarea></div><div class="field full"><label>ملاحظة إضافية (اختياري — دون بيانات مرضى)</label><input name="note" placeholder="ملاحظة عن الخدمة المنزلية"></div>
-<div class="field full"><button class="primary" type="submit">حفظ الخدمة المنزلية بشكل مستقل</button></div>
-</form>
-</div>
-<div class="panel"><h2 class="section-title">سجل الخدمات المنزلية</h2><div id="homeServicesTable" class="empty">لا توجد خدمات منزلية مسجلة بعد.</div><div id="homeServicesTotal" class="summary-strip"><span>إجمالي أجور الخدمات المنزلية في هذا القسم فقط</span><strong class="money-in">0 د.ع</strong></div></div>
-</section>
-<section id="waste" class="view"><div class="panel"><h2 class="section-title">تسجيل تالف أو تعديل جرد</h2><form id="wasteForm" class="grid"><div class="field"><label>نوع الحركة</label><select name="kind"><option value="waste">تالف / منتهي الصلاحية</option><option value="adjust">تسوية جرد (الكمية الفعلية أقل)</option><option value="add">تسوية جرد (الكمية الفعلية أكثر)</option></select></div><div class="field"><label>المادة</label><select name="material" class="materialSelect" required></select></div><div class="field"><label>الكمية</label><input name="qty" type="number" min="0.001" step="0.001" required></div><div class="field"><label>التاريخ</label><input name="date" type="date" required></div><div class="field"><label>السبب / الملاحظة</label><input name="note" placeholder="انتهاء صلاحية، كسر، فرق جرد..." required></div><div class="field full"><button class="primary" type="submit">حفظ حركة المخزون</button></div></form></div><div class="panel"><h2 class="section-title">سجل التالف والجرد</h2><div id="wasteTable" class="empty">لا توجد حركات بعد.</div></div></section>
-<section id="expenses" class="view"><div class="panel"><h2 class="section-title">تسجيل مصروف إضافي</h2><form id="expenseForm" class="grid"><div class="field"><label>نوع المصروف</label><select name="category"><option>إيجار</option><option>كهرباء وماء</option><option>نقل</option><option>صيانة</option><option>تنظيف وتعقيم</option><option>إنترنت واتصالات</option><option>قرطاسية</option><option>أخرى</option></select></div><div class="field"><label>المبلغ (د.ع)</label><input name="amount" type="number" min="0.01" step="0.01" required></div><div class="field"><label>التاريخ</label><input name="date" type="date" required></div><div class="field"><label>التفاصيل</label><input name="note" placeholder="تفاصيل المصروف" required></div><div class="field full"><button class="primary" type="submit">حفظ المصروف</button></div></form></div><div class="panel"><h2 class="section-title">سجل المصاريف</h2><div id="expensesTable" class="empty">لا توجد مصاريف بعد.</div></div></section>
-<section id="reports" class="view"><div class="panel"><h2 class="section-title">تقرير حسب الفترة</h2><div class="grid"><div class="field"><label>من تاريخ</label><input id="fromDate" type="date"></div><div class="field"><label>إلى تاريخ</label><input id="toDate" type="date"></div><div class="field" style="align-self:end"><button id="runReport" class="primary">عرض التقرير</button></div></div><div id="reportResult" class="empty">اختر الفترة ثم اضغط عرض التقرير.</div></div><div class="panel"><h2 class="section-title">النسخ الاحتياطي</h2><p class="hint">صدّر نسخة JSON لحفظ كل بياناتك. لاستعادتها، اختر ملف نسخة احتياطية سبق تصديره من هذا البرنامج.</p><div class="actions"><button id="exportBtn" class="primary">⬇ تصدير نسخة احتياطية</button><button id="exportCsv" class="secondary">تصدير ملخص CSV</button><label class="secondary" style="display:inline-flex;align-items:center;cursor:pointer">استعادة نسخة<input id="importFile" type="file" accept="application/json,.json" class="hide"></label><button id="clearBtn" class="danger">مسح جميع البيانات</button></div><p class="hint">المسح نهائي على هذا الجهاز. لا تضغطه إلا إذا كنت متأكداً ولديك نسخة احتياطية.</p></div></section>
-</main><footer>عيادتي • نسخة أولية — تأكد من مطابقة الحسابات والفواتير قبل الاعتماد عليها.</footer>
-<script>
-(()=>{'use strict';
-const PASS_KEY='eyadati_password_hash_v1';
-const overlay=document.getElementById('authOverlay'),form=document.getElementById('authForm'),password=document.getElementById('authPassword'),confirmInput=document.getElementById('authConfirm'),confirmWrap=document.getElementById('confirmWrap'),title=document.getElementById('authTitle'),desc=document.getElementById('authDesc'),submit=document.getElementById('authSubmit'),error=document.getElementById('authError');
-let hasPassword=!!localStorage.getItem(PASS_KEY);
-function setMode(){hasPassword=!!localStorage.getItem(PASS_KEY);title.textContent=hasPassword?'افتح برنامج عيادتي':'حماية برنامج عيادتي';desc.textContent=hasPassword?'أدخل كلمة السر للمتابعة.':'أنشئ كلمة سر خاصة بك لفتح البرنامج.';confirmWrap.classList.toggle('hide',hasPassword);confirmInput.required=!hasPassword;submit.textContent=hasPassword?'فتح البرنامج':'إنشاء كلمة السر';password.value='';confirmInput.value='';error.textContent='';overlay.classList.remove('hide');setTimeout(()=>password.focus(),50)}
-async function digest(value){if(!window.crypto||!crypto.subtle)throw new Error('افتح الموقع عبر رابط HTTPS لتفعيل حماية كلمة السر.');const bytes=new TextEncoder().encode(value);const hash=await crypto.subtle.digest('SHA-256',bytes);return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('')}
-form.addEventListener('submit',async e=>{e.preventDefault();error.textContent='';const value=password.value;if(value.length<6){error.textContent='اجعل كلمة السر 6 أحرف أو أرقام على الأقل.';return}submit.disabled=true;try{const hashed=await digest(value);if(!localStorage.getItem(PASS_KEY)){if(value!==confirmInput.value){error.textContent='كلمتا السر غير متطابقتين.';return}localStorage.setItem(PASS_KEY,hashed)}else if(hashed!==localStorage.getItem(PASS_KEY)){error.textContent='كلمة السر غير صحيحة. حاول مرة أخرى.';password.value='';password.focus();return}overlay.classList.add('hide');password.value='';confirmInput.value=''}catch(err){error.textContent=err.message||'حدث خطأ، حاول مرة أخرى.'}finally{submit.disabled=false}});
-document.getElementById('lockNow').addEventListener('click',setMode);setMode();
-})();
-</script>
-<script>
-(()=>{'use strict';const KEY='eyadati_nursing_v1';const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];const today=()=>new Date().toISOString().slice(0,10);const money=n=>new Intl.NumberFormat('ar-IQ',{maximumFractionDigits:2}).format(Number(n)||0)+' د.ع';const num=v=>Number(v)||0;const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);let db=load();function blank(){return{materials:[],purchases:[],services:[],homeServices:[],sales:[],waste:[],expenses:[]}}function load(){try{return Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){return blank()}}function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function setDates(){ $$('input[type=date]').forEach(i=>{if(!i.value)i.value=today()})}function material(id){return db.materials.find(m=>m.id===id)}function table(rows,heads,renderRow){if(!rows.length)return '<div class="empty">لا توجد بيانات مسجلة.</div>';return '<div class="table-wrap"><table><thead><tr>'+heads.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(renderRow).join('')+'</tbody></table></div>'}function delBtn(type,id){return `<button class="mini" data-delete="${type}" data-id="${id}" title="حذف">حذف</button>`}
-function attachMaterialSearch(sel){if(sel.dataset.searchReady)return;sel.dataset.searchReady='1';const wrap=document.createElement('div');wrap.className='select-search';const search=document.createElement('input');search.type='search';search.placeholder='🔎 ابحث باسم المادة أو رمزها…';search.setAttribute('aria-label','البحث عن مادة');search.autocomplete='off';const results=document.createElement('div');results.className='material-results';results.setAttribute('role','listbox');wrap.append(search,results);sel.parentNode.insertBefore(wrap,sel);sel.classList.add('picker-hidden');sel.removeAttribute('required');const labelFor=opt=>opt?opt.textContent.replace(/\s*\(متبقي.*?\)$/,'').trim():'';function paint(){const term=search.value.trim().toLocaleLowerCase('ar');const opts=[...sel.options].filter(o=>o.value&&(!term||o.textContent.toLocaleLowerCase('ar').includes(term)));results.innerHTML=opts.length?opts.map(o=>`<button type="button" class="material-result" data-value="${esc(o.value)}">${esc(o.textContent.replace(/\s*\(متبقي.*?\)$/,''))}<small>${esc((o.textContent.match(/\(متبقي.*?\)/)||[''])[0])}</small></button>`).join(''):'<div class="material-no-results">لا توجد مادة مطابقة. جرّب اسماً أو رمزاً آخر.</div>';wrap.classList.add('open')}function setSelected(value){sel.value=value;const opt=sel.selectedOptions[0];search.value=labelFor(opt);wrap.classList.remove('open');sel.dispatchEvent(new Event('change',{bubbles:true}))}search.addEventListener('focus',()=>{search.select();paint()});search.addEventListener('input',()=>{if(sel.value){sel.value=''}paint()});results.addEventListener('click',e=>{const b=e.target.closest('[data-value]');if(b)setSelected(b.dataset.value)});document.addEventListener('click',e=>{if(!wrap.contains(e.target))wrap.classList.remove('open')});sel.addEventListener('change',()=>{if(sel.value)search.value=labelFor(sel.selectedOptions[0])});sel._materialSearch=search;sel._materialResults=results;sel._paintMaterialSearch=()=>{const selected=sel.selectedOptions[0];if(selected&&selected.value)search.value=labelFor(selected);else if(!wrap.classList.contains('open'))search.value='';if(wrap.classList.contains('open'))paint()};}
-function render(){
-const income=db.services.reduce((s,x)=>s+num(x.income),0)+db.sales.reduce((s,x)=>s+num(x.income),0),expenses=db.expenses.reduce((s,x)=>s+num(x.amount),0),used=db.services.reduce((s,x)=>s+num(x.cost),0),wasteCost=db.waste.filter(x=>x.kind==='waste'||x.kind==='adjust').reduce((s,x)=>s+num(x.cost),0);$('#mIncome').textContent=money(income);$('#mExpenses').textContent=money(expenses);$('#mExpenses').style.color='#c62828';$('#mUsed').textContent=money(used);$('#mUsed').style.color='#c62828';$('#mNet').textContent=money(income-expenses-used-wasteCost);$('#mNet').style.color=(income-expenses-used-wasteCost)>=0?'#16834a':'#c62828';
-$$('.materialSelect').forEach(sel=>{attachMaterialSearch(sel);const old=sel.value;sel.innerHTML='<option value="">اختر المادة</option>'+db.materials.map(m=>`<option value="${m.id}">${esc(m.code)} — ${esc(m.name)} (متبقي ${m.qty} ${esc(m.unit)})</option>`).join('');if(material(old))sel.value=old;sel._paintMaterialSearch()});$$('.lineMaterial').forEach(sel=>{attachMaterialSearch(sel);const old=sel.value;sel.innerHTML='<option value="">اختر المادة</option>'+db.materials.map(m=>`<option value="${m.id}">${esc(m.code)} — ${esc(m.name)} (متبقي ${m.qty} ${esc(m.unit)})</option>`).join('');if(material(old))sel.value=old;sel._paintMaterialSearch()});
-const query=($('#materialSearch')?.value||'').trim().toLocaleLowerCase('ar');const visibleMaterials=db.materials.filter(m=>(m.name+' '+m.code).toLocaleLowerCase('ar').includes(query));const totalStockValue=db.materials.reduce((sum,m)=>sum+(num(m.qty)*num(m.cost)),0);$('#materialsTable').innerHTML=visibleMaterials.length?('<div class="table-wrap"><table><thead><tr><th>رمز المادة</th><th>اسم المادة</th><th>الكمية المتوفرة</th><th>تكلفة الوحدة</th><th>إجمالي قيمة المادة</th><th>حالة المخزون</th><th>إجراء</th></tr></thead><tbody>'+visibleMaterials.map(m=>`<tr><td>${esc(m.code)}</td><td><span class="material-name">${esc(m.name)}</span><div class="hint">وحدة القياس: ${esc(m.unit)}</div></td><td>${Number(m.qty.toFixed(3))} ${esc(m.unit)}</td><td>${money(m.cost)}</td><td class="stock-value">${money(m.qty*m.cost)}</td><td>${m.qty<=m.min?'<span class="pill">مخزون منخفض</span>':'<span class="positive">متوفر</span>'}</td><td>${delBtn('material',m.id)}</td></tr>`).join('')+'</tbody><tfoot><tr><td colspan="4">إجمالي قيمة جميع المواد في المخزون</td><td colspan="3">'+money(totalStockValue)+'</td></tr></tfoot></table></div><div class="summary-strip"><span>عدد المواد الظاهرة: <strong>'+visibleMaterials.length+'</strong> من '+db.materials.length+'</span><span>إجمالي قيمة المخزون الكامل: <strong>'+money(totalStockValue)+'</strong></span></div>'):'<div class="empty">'+(db.materials.length?'لا توجد نتائج مطابقة للبحث.':'لا توجد مواد بعد.')+'</div>';
-$('#purchasesTable').innerHTML=table([...db.purchases].reverse(),['التاريخ','المادة','الكمية','سعر الوحدة','الإجمالي','المورّد',''],x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.materialName)}</td><td>${x.qty}</td><td>${money(x.cost)}</td><td><strong class="money-out">${money(x.qty*x.cost)}</strong></td><td>${esc(x.supplier||'—')}</td><td>${delBtn('purchase',x.id)}</td></tr>`);
-const saleRows=[...db.sales].reverse();const saleTotal=db.sales.reduce((sum,x)=>sum+num(x.income),0);$('#salesTable').innerHTML=saleRows.length?table(saleRows,['التاريخ','اسم المادة','الكمية','سعر الوحدة قبل الخصم','الخصم','المبلغ المستلم','ملاحظة',''],x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.materialName)}</td><td>${x.qty} ${esc(x.unit||'')}</td><td>${money(x.price)}</td><td class="negative">${num(x.discountPercent)}% ${x.discountAmount?`(−${money(x.discountAmount)})`:''}</td><td><strong class="money-in">${money(x.income)}</strong></td><td>${esc(x.note||'—')}</td><td>${delBtn('sale',x.id)}</td></tr>`)+`<div class="summary-strip"><span>إجمالي المبالغ المستلمة من جميع المبيعات</span><strong class="money-in">${money(saleTotal)}</strong></div>`:'<div class="empty">لا توجد مبيعات بعد.</div>';
-$('#servicesTable').innerHTML=table([...db.services].reverse(),['التاريخ','الخدمة','السعر قبل الخصم','الخصم','المبلغ المقبوض','تكلفة المواد','الصافي قبل المصاريف','تفاصيل المواد',''],x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.name)}</td><td>${money(x.subtotal??x.income)}</td><td class="negative">${num(x.discountPercent)}% ${x.discountAmount?`(−${money(x.discountAmount)})`:''}</td><td class="money-in">${money(x.income)}</td><td>${money(x.cost)}</td><td>${money(x.income-x.cost)}</td><td>${x.lines.map(l=>esc(l.name)+' × '+l.qty).join('، ')||'—'}</td><td>${delBtn('service',x.id)}</td></tr>`);
-const homeServiceTotal=(db.homeServices||[]).reduce((sum,x)=>sum+num(x.income),0);const homeServiceRows=[...(db.homeServices||[])].reverse();$('#homeServicesTable').innerHTML=homeServiceRows.length?table(homeServiceRows,['التاريخ','الخدمة المنزلية','السعر قبل الخصم','الخصم','الأجرة المقبوضة','المواد المستخدمة (تذكير فقط)','ملاحظة',''],x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.name)}</td><td>${money(x.subtotal??x.income)}</td><td class="negative">${num(x.discountPercent)}% ${x.discountAmount?`(−${money(x.discountAmount)})`:''}</td><td><strong class="money-in">${money(x.income)}</strong></td><td>${esc(x.materialsUsed||'—')}</td><td>${esc(x.note||'—')}</td><td>${delBtn('homeService',x.id)}</td></tr>`):'<div class="empty">لا توجد خدمات منزلية مسجلة بعد.</div>';$('#homeServicesTotal').innerHTML=`<span>إجمالي أجور الخدمات المنزلية في هذا القسم فقط</span><strong class="money-in">${money(homeServiceTotal)}</strong>`;
-$('#wasteTable').innerHTML=table([...db.waste].reverse(),['التاريخ','النوع','المادة','الكمية','التكلفة التقديرية','الملاحظة',''],x=>`<tr><td>${esc(x.date)}</td><td>${({waste:'تالف',adjust:'تسوية نقص',add:'تسوية زيادة'})[x.kind]}</td><td>${esc(x.materialName)}</td><td>${x.qty}</td><td><strong class="${x.kind==='add'?'money-in':'money-out'}">${money(x.cost)}</strong></td><td>${esc(x.note)}</td><td>${delBtn('waste',x.id)}</td></tr>`);
-$('#expensesTable').innerHTML=table([...db.expenses].reverse(),['التاريخ','الفئة','التفاصيل','المبلغ',''],x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.category)}</td><td>${esc(x.note)}</td><td><strong class="money-out">${money(x.amount)}</strong></td><td>${delBtn('expense',x.id)}</td></tr>`);
-const low=db.materials.filter(m=>m.qty<=m.min);$('#lowStock').innerHTML=low.length?table(low,['الرمز','المادة','الرصيد','حد التنبيه'],m=>`<tr><td>${esc(m.code)}</td><td>${esc(m.name)}</td><td>${m.qty} ${esc(m.unit)}</td><td>${m.min}</td></tr>`):'<div class="empty">'+(db.materials.length?'كل المواد فوق حد التنبيه حالياً.':'لا توجد مواد مسجلة بعد.')+'</div>';
-let recent=[...db.services.map(x=>({date:x.date,type:'خدمة',desc:x.name,amount:x.income})),...db.sales.map(x=>({date:x.date,type:'بيع مادة',desc:x.materialName,amount:x.income})),...db.purchases.map(x=>({date:x.date,type:'شراء',desc:x.materialName,amount:-x.qty*x.cost})),...db.expenses.map(x=>({date:x.date,type:'مصروف',desc:x.category,amount:-x.amount})),...db.waste.map(x=>({date:x.date,type:'مخزون',desc:x.materialName,amount:0}))].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6);$('#recent').innerHTML=recent.length?table(recent,['التاريخ','الحركة','التفاصيل','المبلغ'],x=>`<tr><td>${esc(x.date)}</td><td>${x.type}</td><td>${esc(x.desc)}</td><td class="${x.amount<0?'negative':'positive'}">${money(x.amount)}</td></tr>`):'<div class="empty">ستظهر الحركات هنا بعد التسجيل.</div>';
+:root {
+  --bg:#202522;
+  --panel:#292f2b;
+  --panel2:#323a35;
+  --mint:#a5e6c5;
+  --mint-dark:#244c39;
+  --text:#f3f7f4;
+  --muted:#aab7af;
+  --border:#414b44;
 }
-$('#materialSearch')?.addEventListener('input',()=>render());
-function show(id){$$('.view').forEach(v=>v.classList.toggle('active',v.id===id));$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));if(id==='services'&&!$('#serviceLines').children.length)addLine();window.scrollTo(0,0)}$$('.nav button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));$$('[data-go]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.go)));
-function addLine(){const div=document.createElement('div');div.className='grid service-line';div.style.marginBottom='8px';div.innerHTML='<div class="field"><label>ابحث عن المادة المستخدمة</label><select class="lineMaterial"><option value="">اختر المادة</option>'+db.materials.map(m=>`<option value="${m.id}">${esc(m.code)} — ${esc(m.name)} (متبقي ${m.qty} ${esc(m.unit)})</option>`).join('')+'</select></div><div class="field"><label>الكمية المستخدمة</label><input class="lineQty" type="number" min="0.001" step="0.001" required></div><div class="field" style="align-self:end"><button type="button" class="danger removeLine">إزالة</button></div>';div.querySelector('.removeLine').onclick=()=>div.remove();$('#serviceLines').appendChild(div);attachMaterialSearch(div.querySelector('.lineMaterial'));div.querySelector('.lineMaterial')._paintMaterialSearch()}$('#addLine').addEventListener('click',addLine);
-$('#materialForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),code=String(f.get('code')).trim();if(db.materials.some(m=>m.code.toLowerCase()===code.toLowerCase()))return alert('هذا الرمز مستخدم بالفعل. اختر رمزاً مختلفاً.');db.materials.push({id:uid(),code,name:String(f.get('name')).trim(),unit:f.get('unit'),qty:num(f.get('qty')),cost:num(f.get('cost')),min:num(f.get('min'))});e.target.reset();save();setDates();alert('تم حفظ المادة.')});
-$('#purchaseForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),m=material(f.get('material')),qty=num(f.get('qty')),cost=num(f.get('cost'));if(!m)return alert('اختر مادة أولاً.');const oldQty=m.qty,oldCost=m.cost;m.cost=(oldQty*oldCost+qty*cost)/(oldQty+qty||1);m.qty+=qty;db.purchases.push({id:uid(),materialId:m.id,materialName:m.name,qty,cost,date:f.get('date'),supplier:f.get('supplier'),note:f.get('note')});e.target.reset();setDates();save();alert('تم تسجيل الشراء وتحديث المخزون.')});
-$('#saleForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),m=material(f.get('material')),qty=num(f.get('qty')),price=num(f.get('price'));if(!m)return alert('اختر مادة أولاً.');if(qty<=0)return alert('أدخل كمية صحيحة.');if(m.qty<qty)return alert(`الكمية غير كافية للمادة: ${m.name}. الرصيد المتاح ${m.qty} ${m.unit}.`);const cost=qty*m.cost,subtotal=qty*price,discountPercent=num(f.get('discountPercent')),discountAmount=subtotal*discountPercent/100,income=subtotal-discountAmount;m.qty-=qty;db.sales.push({id:uid(),materialId:m.id,materialName:m.name,unit:m.unit,qty,price,subtotal,discountPercent,discountAmount,income,cost,date:f.get('date'),note:String(f.get('note')||'').trim()});e.target.reset();setDates();save();alert('تم تسجيل البيع وخصم الكمية من المخزون فوراً.');});
-$('#serviceForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),lines=[];for(const row of $$('.service-line')){const id=row.querySelector('.lineMaterial').value,qty=num(row.querySelector('.lineQty').value);if(!id||qty<=0)return alert('أكمل المادة والكمية لكل سطر أو أزل السطر غير المستخدم.');const m=material(id);if(!m)return alert('إحدى المواد لم تعد موجودة.');if(m.qty<qty)return alert(`الكمية غير كافية للمادة: ${m.name}. الرصيد ${m.qty} ${m.unit}.`);lines.push({materialId:m.id,name:m.name,qty,cost:m.cost*qty})}const merged={};lines.forEach(l=>merged[l.materialId]=(merged[l.materialId]||0)+l.qty);for(const [id,q] of Object.entries(merged)){if(material(id).qty<q)return alert('إجمالي الكمية المستخدمة يتجاوز الرصيد للمادة: '+material(id).name)}lines.forEach(l=>material(l.materialId).qty-=l.qty);const cost=lines.reduce((s,l)=>s+l.cost,0);const subtotal=num(f.get('income')),discountPercent=num(f.get('discountPercent')),discountAmount=subtotal*discountPercent/100,income=subtotal-discountAmount;db.services.push({id:uid(),name:String(f.get('name')).trim(),subtotal,discountPercent,discountAmount,income,date:f.get('date'),note:f.get('note'),lines:lines.map(l=>({name:l.name,qty:l.qty,materialId:l.materialId})),cost});e.target.reset();$('#serviceLines').innerHTML='';addLine();setDates();save();alert('تم حفظ الخدمة وخصم المواد المستخدمة.')});
-$('#wasteForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),m=material(f.get('material')),qty=num(f.get('qty')),kind=f.get('kind');if(!m)return alert('اختر مادة.');if(kind!=='add'&&m.qty<qty)return alert('الكمية المسجلة لا تكفي لهذه الحركة.');if(kind==='add')m.qty+=qty;else m.qty-=qty;db.waste.push({id:uid(),kind,materialId:m.id,materialName:m.name,qty,cost:qty*m.cost,date:f.get('date'),note:String(f.get('note')).trim()});e.target.reset();setDates();save();alert('تم تسجيل الحركة وتحديث الرصيد.')});
-$('#expenseForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target);db.expenses.push({id:uid(),category:f.get('category'),amount:num(f.get('amount')),date:f.get('date'),note:String(f.get('note')).trim()});e.target.reset();setDates();save();alert('تم حفظ المصروف.')});
-$('#homeServiceForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),income=num(f.get('income'));if(income<=0)return alert('أدخل أجرة صحيحة للخدمة المنزلية.');const subtotal=income,discountPercent=num(f.get('discountPercent')),discountAmount=subtotal*discountPercent/100,finalIncome=subtotal-discountAmount;db.homeServices.push({id:uid(),name:String(f.get('name')).trim(),subtotal,discountPercent,discountAmount,income:finalIncome,date:f.get('date'),materialsUsed:String(f.get('materialsUsed')||'').trim(),note:String(f.get('note')||'').trim()});e.target.reset();setDates();save();alert('تم تسجيل الخدمة المنزلية في حسابها المستقل. لم يتغير المخزون أو الوارد العام.')});
-document.addEventListener('click',e=>{const b=e.target.closest('[data-delete]');if(!b)return;const {delete:type,id}=b.dataset;if(!confirm(type==='homeService'?'هل تريد حذف سجل الخدمة المنزلية؟ لن يؤثر الحذف على المخزون.':'هل تريد حذف السجل؟ قد لا يعاد المخزون تلقائياً في هذه النسخة. الأفضل عدم حذف حركات تمت فعلياً.'))return;if(type==='material'){const used=[...db.purchases,...db.services.flatMap(s=>s.lines),...db.waste].some(x=>x.materialId===id);if(used)return alert('لا يمكن حذف مادة مرتبطة بحركات سابقة.');db.materials=db.materials.filter(x=>x.id!==id)}else db[type+'s']=db[type+'s'].filter(x=>x.id!==id);save()});
-function within(x,from,to){return(!from||x.date>=from)&&(!to||x.date<=to)}$('#runReport').addEventListener('click',()=>{const from=$('#fromDate').value,to=$('#toDate').value;if(from&&to&&from>to)return alert('تاريخ البداية يجب أن يسبق تاريخ النهاية.');const services=db.services.filter(x=>within(x,from,to)),sales=db.sales.filter(x=>within(x,from,to)),expenses=db.expenses.filter(x=>within(x,from,to)),purchases=db.purchases.filter(x=>within(x,from,to)),waste=db.waste.filter(x=>within(x,from,to));const inc=services.reduce((s,x)=>s+x.income,0)+sales.reduce((s,x)=>s+x.income,0),used=services.reduce((s,x)=>s+x.cost,0)+sales.reduce((s,x)=>s+x.cost,0),exp=expenses.reduce((s,x)=>s+x.amount,0),wcost=waste.filter(x=>x.kind==='waste'||x.kind==='adjust').reduce((s,x)=>s+x.cost,0);$('#reportResult').innerHTML=`<div class="cards"><div class="card metric"><small>إيراد الخدمات</small><strong>${money(inc)}</strong></div><div class="card metric"><small>تكلفة المواد المستخدمة</small><strong>${money(used)}</strong></div><div class="card metric"><small>المصاريف الإضافية</small><strong>${money(exp)}</strong></div><div class="card metric"><small>صافي تقديري للفترة</small><strong>${money(inc-used-exp-wcost)}</strong></div></div><p>عدد الخدمات: ${services.length} • مبيعات المواد: ${sales.length} عملية • المشتريات: ${purchases.length} عملية (${money(purchases.reduce((s,x)=>s+x.qty*x.cost,0))}) • حركات التالف والجرد: ${waste.length}</p><p class="hint">الصافي التقديري = إيرادات الخدمات − تكلفة المواد المستخدمة − المصاريف الإضافية − تكلفة التالف/النقص المسجل. المشتريات لا تخصم مرة ثانية من الصافي لتجنب ازدواج احتساب المواد.</p>`});
-function download(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}$('#exportBtn').onclick=()=>download('eyadati-backup-'+today()+'.json',JSON.stringify({version:1,exportedAt:new Date().toISOString(),data:db},null,2),'application/json');$('#exportCsv').onclick=()=>{const lines=[['النوع','التاريخ','الوصف','المبلغ/التكلفة'],...db.services.map(x=>['خدمة',x.date,x.name,x.income]),...(db.homeServices||[]).map(x=>['خدمة منزلية (حساب مستقل)',x.date,x.name,x.income]),...db.sales.map(x=>['بيع مادة',x.date,x.materialName,x.income]),...db.expenses.map(x=>['مصروف',x.date,x.category,x.amount]),...db.purchases.map(x=>['شراء',x.date,x.materialName,x.qty*x.cost]),...db.waste.map(x=>['تالف/جرد',x.date,x.materialName,x.cost])];download('eyadati-summary-'+today()+'.csv','\ufeff'+lines.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n'),'text/csv;charset=utf-8')};$('#importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const obj=JSON.parse(await file.text()),data=obj.data||obj;if(!data.materials||!data.services||!data.expenses)throw Error();if(!confirm('ستُستبدل البيانات الحالية بالنسخة المختارة. هل تريد المتابعة؟'))return;db=Object.assign(blank(),data);save();alert('تمت استعادة النسخة.')}catch(err){alert('تعذر قراءة الملف. اختر نسخة احتياطية صحيحة من هذا البرنامج.')}e.target.value=''});$('#clearBtn').onclick=()=>{if(confirm('تحذير: سيتم حذف جميع البيانات من هذا الجهاز نهائياً. هل أنت متأكد؟')&&confirm('تأكيد أخير: هل حفظت نسخة احتياطية؟')){db=blank();save();alert('تم مسح البيانات.')}};
-setDates();render();})();
-</script></body></html>
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,Tahoma,sans-serif;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{display:flex;min-height:100vh}
+.sidebar{
+  width:235px;background:#191e1b;padding:24px 16px;
+  border-left:1px solid var(--border);flex-shrink:0;
+}
+.logo{font-size:23px;font-weight:bold;color:var(--mint);margin-bottom:8px}
+.subtitle{font-size:12px;color:var(--muted);margin-bottom:28px}
+.nav button{
+  display:block;width:100%;text-align:right;margin:7px 0;
+  border:0;border-radius:10px;padding:13px 12px;
+  color:var(--muted);background:transparent;
+}
+.nav button.active,.nav button:hover{
+  background:var(--mint);color:#202923;font-weight:bold;
+}
+.main{flex:1;min-width:0;padding:25px}
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;flex-wrap:wrap;margin-bottom:26px;
+}
+h1{font-size:25px;margin:0 0 8px}
+p{color:var(--muted);margin:0;line-height:1.7}
+.pill{background:var(--mint-dark);color:var(--mint);
+  padding:8px 12px;border-radius:20px;font-size:12px}
+.grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;margin-bottom:22px;
+}
+.card,.section{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:15px;padding:18px;
+}
+.stat-label{color:var(--muted);font-size:13px}
+.stat-number{font-size:30px;font-weight:bold;margin-top:14px}
+.stat-icon{color:var(--mint);font-size:21px}
+.layout{display:grid;grid-template-columns:1.5fr 1fr;gap:16px}
+.section h2{font-size:17px;margin:0 0 17px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;white-space:nowrap}
+th,td{padding:13px 9px;text-align:right;border-bottom:1px solid var(--border);font-size:13px}
+th{color:var(--muted);font-weight:normal}
+.status{color:var(--mint);background:var(--mint-dark);
+  padding:5px 9px;border-radius:15px;font-size:11px}
+.btn{
+  background:var(--mint);color:#202923;border:0;border-radius:9px;
+  padding:11px 15px;font-weight:bold;
+}
+.btn.secondary{background:var(--panel2);color:var(--text);
+  border:1px solid var(--border)}
+.btn.danger{background:#543b3b;color:#ffd4d4}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+label{display:block;color:var(--muted);font-size:13px;margin-bottom:7px}
+input,select{
+  width:100%;background:#1e2420;color:var(--text);
+  border:1px solid var(--border);border-radius:9px;padding:12px;
+}
+.field{margin-bottom:12px}
+.page{display:none}
+.page.active{display:block}
+.empty{color:var(--muted);padding:22px;text-align:center}
+.service{
+  padding:14px;margin-bottom:10px;background:var(--panel2);
+  border-radius:10px;display:flex;justify-content:space-between;gap:10px;
+}
+.mint{color:var(--mint)}
+.note{font-size:12px;color:var(--muted);margin-top:18px}
+@media(max-width:850px){
+  .sidebar{width:180px;padding:18px 10px}
+  .main{padding:17px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .layout{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .app{display:block}
+  .sidebar{width:100%;padding:13px}
+  .logo{font-size:20px;margin-bottom:4px}
+  .subtitle{margin-bottom:10px}
+  .nav{display:flex;gap:6px;overflow-x:auto}
+  .nav button{white-space:nowrap;width:auto;flex-shrink:0;margin:0;padding:10px}
+  .main{padding:15px}
+  h1{font-size:21px}
+  .stat-number{font-size:25px}
+  .card{padding:13px}
+  .form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo">✚ Clinic Mint</div>
+    <div class="subtitle">نظام إدارة العيادة</div>
+    <nav class="nav">
+      <button class="active" data-page="dashboard">▦ الرئيسية</button>
+      <button data-page="appointments">▣ المواعيد</button>
+      <button data-page="patients">♙ السجلات التجريبية</button>
+      <button data-page="services">✚ الخدمات والأسعار</button>
+      <button data-page="reports">▤ التقارير</button>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1 id="page-title">لوحة إدارة العيادة</h1>
+        <p id="page-subtitle">نظرة عامة على العمل اليومي</p>
+      </div>
+      <span class="pill">● النسخة التجريبية</span>
+    </header>
+
+    <section id="dashboard" class="page active">
+      <div class="grid">
+        <div class="card"><div class="stat-label">إجمالي المواعيد</div><div class="stat-number" id="total">3</div><div class="stat-icon">▣</div></div>
+        <div class="card"><div class="stat-label">المواعيد المؤكدة</div><div class="stat-number" id="confirmed">2</div><div class="stat-icon">✓</div></div>
+        <div class="card"><div class="stat-label">الخدمات المتاحة</div><div class="stat-number" id="service-count">4</div><div class="stat-icon">✚</div></div>
+        <div class="card"><div class="stat-label">طلبات جديدة</div><div class="stat-number" id="new-count">1</div><div class="stat-icon">◷</div></div>
+      </div>
+      <div class="layout">
+        <div class="section">
+          <h2>أحدث المواعيد</h2>
+          <div class="table-wrap"><table>
+            <thead><tr><th>الاسم التجريبي</th><th>الخدمة</th><th>الحالة</th></tr></thead>
+            <tbody id="recent"></tbody>
+          </table></div>
+          <div class="actions" style="margin-top:16px">
+            <button class="btn" onclick="showPage('appointments')">إدارة المواعيد</button>
+          </div>
+        </div>
+        <div class="section">
+          <h2>اختصارات سريعة</h2>
+          <div class="actions">
+            <button class="btn" onclick="showPage('appointments');document.getElementById('booking-form').scrollIntoView({behavior:'smooth'})">＋ موعد تجريبي</button>
+            <button class="btn secondary" onclick="showPage('services')">عرض الخدمات</button>
+            <button class="btn secondary" onclick="showPage('reports')">عرض التقارير</button>
+          </div>
+          <p class="note">كل البيانات الظاهرة هنا وهمية لاختبار الواجهة.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="appointments" class="page">
+      <div class="section" style="margin-bottom:18px">
+        <h2>إضافة موعد تجريبي</h2>
+        <form id="booking-form">
+          <div class="form-grid">
+            <div class="field"><label for="patient-name">اسم تجريبي</label><input id="patient-name" required placeholder="مثال: مريض تجريبي"></div>
+            <div class="field"><label for="service-select">الخدمة</label><select id="service-select"></select></div>
+            <div class="field"><label for="date">التاريخ</label><input id="date" type="date" required></div>
+            <div class="field"><label for="time">الوقت</label><input id="time" type="time" required></div>
+          </div>
+          <button class="btn" type="submit">＋ حفظ الموعد التجريبي</button>
+        </form>
+      </div>
+      <div class="section">
+        <h2>قائمة المواعيد</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>الاسم</th><th>الخدمة</th><th>التاريخ</th><th>الوقت</th><th>الحالة</th><th>الإجراء</th></tr></thead>
+          <tbody id="appointment-list"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <section id="patients" class="page">
+      <div class="section">
+        <h2>السجلات التجريبية</h2>
+        <p style="margin-bottom:16px">هذه أمثلة وهمية فقط، وليست ملفات طبية حقيقية.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>الاسم التجريبي</th><th>عدد المواعيد</th><th>ملاحظة</th></tr></thead>
+          <tbody id="patient-list"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <section id="services" class="page">
+      <div class="section">
+        <h2>الخدمات والأسعار التجريبية</h2>
+        <p style="margin-bottom:15px">عدّل أسماء الخدمات والأسعار لاحقاً حسب خدمات العيادة الفعلية.</p>
+        <div id="service-list"></div>
+        <form id="service-form" style="margin-top:20px">
+          <h2>إضافة خدمة</h2>
+          <div class="form-grid">
+            <div class="field"><label for="service-name">اسم الخدمة</label><input id="service-name" required></div>
+            <div class="field"><label for="service-price">السعر بالدينار العراقي</label><input id="service-price" type="number" min="0" required></div>
+          </div>
+          <button class="btn" type="submit">إضافة الخدمة</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="reports" class="page">
+      <div class="grid">
+        <div class="card"><div class="stat-label">عدد المواعيد</div><div class="stat-number" id="report-total">3</div></div>
+        <div class="card"><div class="stat-label">المؤكدة</div><div class="stat-number" id="report-confirmed">2</div></div>
+      </div>
+      <div class="section">
+        <h2>ملخص الحالة</h2>
+        <p id="report-summary">تظهر هنا أرقام النسخة التجريبية.</p>
+        <p class="note">لا تمثل هذه الأرقام إيرادات فعلية ولا بيانات عيادة حقيقية.</p>
+      </div>
+    </section>
+    <p class="note">Clinic Mint — نموذج واجهة تجريبي. لا تدخل بيانات مرضى حقيقية.</p>
+  </main>
+</div>
+
+<script>
+const services = [
+  {name:"استشارة تمريضية",price:15000},
+  {name:"متابعة منزلية",price:25000},
+  {name:"قياس العلامات الحيوية",price:10000},
+  {name:"متابعة كبار السن",price:20000}
+];
+
+let appointments = [
+  {name:"مريض تجريبي 1",service:"استشارة تمريضية",date:"2026-10-28",time:"10:00",status:"مؤكد"},
+  {name:"مريض تجريبي 2",service:"متابعة منزلية",date:"2026-10-28",time:"12:00",status:"مؤكد"},
+  {name:"مريض تجريبي 3",service:"قياس العلامات الحيوية",date:"2026-10-29",time:"15:00",status:"جديد"}
+];
+
+const titles = {
+  dashboard:["لوحة إدارة العيادة","نظرة عامة على العمل اليومي"],
+  appointments:["إدارة المواعيد","إضافة المواعيد ومتابعة حالتها"],
+  patients:["السجلات التجريبية","عرض أمثلة وهمية لاختبار التصميم"],
+  services:["الخدمات والأسعار","إدارة قائمة الخدمات التجريبية"],
+  reports:["التقارير","ملخص أرقام النسخة التجريبية"]
+};
+
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+  document.getElementById("page-title").textContent=titles[id][0];
+  document.getElementById("page-subtitle").textContent=titles[id][1];
+}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+
+function safe(text){
+  return String(text).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function render(){
+  const confirmed=appointments.filter(a=>a.status==="مؤكد").length;
+  document.getElementById("total").textContent=appointments.length;
+  document.getElementById("confirmed").textContent=confirmed;
+  document.getElementById("new-count").textContent=appointments.filter(a=>a.status==="جديد").length;
+  document.getElementById("service-count").textContent=services.length;
+  document.getElementById("report-total").textContent=appointments.length;
+  document.getElementById("report-confirmed").textContent=confirmed;
+  document.getElementById("report-summary").textContent=
+    "إجمالي المواعيد التجريبية: "+appointments.length+"، المؤكدة: "+confirmed+"، الجديدة: "+appointments.filter(a=>a.status==="جديد").length+".";
+
+  document.getElementById("recent").innerHTML=appointments.slice(-4).reverse().map(a=>
+    `<tr><td>${safe(a.name)}</td><td>${safe(a.service)}</td><td><span class="status">${safe(a.status)}</span></td></tr>`
+  ).join("")||'<tr><td colspan="3" class="empty">لا توجد مواعيد</td></tr>';
+
+  document.getElementById("appointment-list").innerHTML=appointments.map((a,i)=>
+    `<tr><td>${safe(a.name)}</td><td>${safe(a.service)}</td><td>${safe(a.date)}</td><td>${safe(a.time)}</td><td><span class="status">${safe(a.status)}</span></td><td><div class="actions">${a.status!=="مؤكد"?`<button class="btn" onclick="confirmAppointment(${i})">تأكيد</button>`:""}<button class="btn danger" onclick="deleteAppointment(${i})">حذف</button></div></td></tr>`
+  ).join("")||'<tr><td colspan="6" class="empty">لا توجد مواعيد حالياً</td></tr>';
+
+  const unique=[...new Set(appointments.map(a=>a.name))];
+  document.getElementById("patient-list").innerHTML=unique.map(name=>{
+    const count=appointments.filter(a=>a.name===name).length;
+    return `<tr><td>${safe(name)}</td><td>${count}</td><td>بيانات اختبار فقط</td></tr>`;
+  }).join("")||'<tr><td colspan="3" class="empty">لا توجد سجلات</td></tr>';
+
+  document.getElementById("service-list").innerHTML=services.map(s=>
+    `<div class="service"><span>${safe(s.name)}</span><strong class="mint">${Number(s.price).toLocaleString("en-US")} د.ع</strong></div>`
+  ).join("");
+
+  document.getElementById("service-select").innerHTML=services.map(s=>
+    `<option value="${safe(s.name)}">${safe(s.name)}</option>`
+  ).join("");
+}
+function confirmAppointment(i){appointments[i].status="مؤكد";render()}
+function deleteAppointment(i){
+  if(confirm("هل تريد حذف هذا الموعد التجريبي؟")){
+    appointments.splice(i,1);render();
+  }
+}
+document.getElementById("booking-form").addEventListener("submit",e=>{
+  e.preventDefault();
+  if(!services.length){alert("أضف خدمة أولاً.");return}
+  appointments.push({
+    name:document.getElementById("patient-name").value.trim(),
+    service:document.getElementById("service-select").value,
+    date:document.getElementById("date").value,
+    time:document.getElementById("time").value,
+    status:"جديد"
+  });
+  e.target.reset();
+  render();
+  showPage("appointments");
+  alert("تمت إضافة الموعد إلى النموذج التجريبي.");
+});
+document.getElementById("service-form").addEventListener("submit",e=>{
+  e.preventDefault();
+  services.push({
+    name:document.getElementById("service-name").value.trim(),
+    price:Number(document.getElementById("service-price").value)
+  });
+  e.target.reset();render();
+  alert("تمت إضافة الخدمة إلى النموذج التجريبي.");
+});
+render();
+</script>
+</body>
+</html>
